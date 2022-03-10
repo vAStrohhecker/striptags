@@ -137,4 +137,13 @@ describe('striptags', function() {
 
         assert.equal(striptags(html, allowedTags, tagReplacement), text);
     });
+
+    it('should replace with the tagReplacement as an array parameter', function() {
+        var html = '<h1>Headline</h1>Line One<br>Line Two<p>This is <b>bold</b> text</p>',
+            allowedTags = [],
+            tagReplacement = {default: '' , "h1": ".\n", "p": "\n", "br": "\n"},
+            text = '.\nHeadline.\nLine One\nLine Two\nThis is bold text\n';
+
+        assert.equal(striptags(html, allowedTags, tagReplacement), text);
+    });
 });

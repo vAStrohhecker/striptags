@@ -226,8 +226,15 @@
 
             if (allowableTags.indexOf(normalized) !== -1) {
                 output += tagBuffer;
-            } else if (tagReplacement) {
+            }
+            else if (tagReplacement && typeof tagReplacement === "string") {
                 output += tagReplacement;
+            }
+            else if(tagReplacement && tagReplacement.hasOwnProperty(normalized)) {
+                output += tagReplacement[normalized];
+            }
+            else if(tagReplacement && tagReplacement.hasOwnProperty("default")) {
+                output += tagReplacement["default"];
             }
 
             tagBuffer = '';
